@@ -1,11 +1,13 @@
 <template>
   <div class="animal-box-scroll">
     <div class="animal-box">
-      <ul :style="{ width: `${(animalTypes.length + 1) * 71}px` }">
+      <ul>
         <li v-for="animal in animalTypes"
-            :key="animal.id">
+            :key="animal.id"
+            @click="changeAnimalIndex(animal.id)"
+            :style="currentColor(animal)">
           <div class="animal">
-            <i class="fa fa-search"></i>
+            <i :class="['fa', `fa-${animal.icon}`]"></i>
             <div class="animal_name"> {{ animal.name }} </div>
           </div>
         </li>
@@ -21,7 +23,16 @@ export default {
     ...mapState(['currentAnimalIndex', 'animalTypes'])
   },
   methods: {
-    ...mapMutations(['changeAnimalIndex'])
+    ...mapMutations(['changeAnimalIndex']),
+    currentColor (animal) {
+      const isCurrent = (animal.id === this.currentAnimalIndex)
+      console.log(isCurrent)
+      return {
+        backgroundColor: isCurrent ? 'rgb(255, 255, 255)' : 'rgb(248, 248, 248)',
+        color: isCurrent ? 'rgb(82, 31, 232)' : 'rgb(215, 215, 215)',
+        boxShadow: isCurrent ? '0 1px 1px 1px rgba(0, 0, 0, 0.1)' : '0 0 0 0 rgba(0, 0, 0, 0)'
+      }
+    }
   }
 }
 </script>
@@ -43,11 +54,19 @@ export default {
   display: flex;
 }
 .animal-box li {
-  width: 44px;
-  height: 44px;
+  width: 55px;
+  height: 55px;
   margin-left: 20px;
   border: 1px solid #eee;
   border-radius: 5px;
-  padding: 10px;
+  display: flex;
+  justify-content: center;
+
+  .animal {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
 }
 </style>

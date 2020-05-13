@@ -33,10 +33,12 @@ export default new Vuex.Store({
       {
         id: 0,
         name: 'Cats',
+        icon: 'venus',
       },
       {
         id: 1,
         name: 'Dogs',
+        icon: 'mars',
       },
     ],
   },
