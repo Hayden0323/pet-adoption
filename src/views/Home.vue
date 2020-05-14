@@ -3,6 +3,8 @@
     <app-header icon="paw" />
     <search-bar />
     <animal-box />
+    <navigation />
+    <animal-list />
     <bottom-bar />
   </div>
 </template>
@@ -11,12 +13,16 @@
 import AppHeader from '../components/AppHeader'
 import SearchBar from '../components/SearchBar'
 import AnimalBox from '../components/AnimalBox'
+import Navigation from '../components/Navigation'
+import AnimalList from '../components/AnimalList'
 import BottomBar from '../components/BottomBar'
 export default {
   components: {
     AppHeader,
     SearchBar,
     AnimalBox,
+    Navigation,
+    AnimalList,
     BottomBar
   }
 }

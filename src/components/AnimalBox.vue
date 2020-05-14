@@ -6,9 +6,9 @@
             :key="animal.id"
             @click="changeAnimalIndex(animal.id)"
             :style="currentColor(animal)">
-          <div class="animal">
+          <div class="animal-box_animal">
             <i :class="['fa', `fa-${animal.icon}`]"></i>
-            <div class="animal_name"> {{ animal.name }} </div>
+            <div class="animal-box_name"> {{ animal.name }} </div>
           </div>
         </li>
       </ul>
@@ -26,11 +26,10 @@ export default {
     ...mapMutations(['changeAnimalIndex']),
     currentColor (animal) {
       const isCurrent = (animal.id === this.currentAnimalIndex)
-      console.log(isCurrent)
       return {
         backgroundColor: isCurrent ? 'rgb(255, 255, 255)' : 'rgb(248, 248, 248)',
         color: isCurrent ? 'rgb(82, 31, 232)' : 'rgb(215, 215, 215)',
-        boxShadow: isCurrent ? '0 1px 1px 1px rgba(0, 0, 0, 0.1)' : '0 0 0 0 rgba(0, 0, 0, 0)'
+        boxShadow: isCurrent ? '0 0px 0px 3px rgba(215, 215, 215, 0.1)' : '0 0 0 0 rgba(0, 0, 0, 0)'
       }
     }
   }
@@ -62,7 +61,7 @@ export default {
   display: flex;
   justify-content: center;
 
-  .animal {
+  .animal-box_animal {
     display: flex;
     flex-direction: column;
     align-items: center;
