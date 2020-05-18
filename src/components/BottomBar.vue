@@ -41,7 +41,7 @@ export default {
   border-radius: 40px;
   border-top: 1px solid #eee;
   background-color: white;
-  z-index: 10;
+  z-index: 8;
 
   span {
     display: flex;

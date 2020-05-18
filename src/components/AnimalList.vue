@@ -1,8 +1,7 @@
 <template>
-  <div class="animal-list"
-       :class="{'animal-list__selected': !!selected}">
-    <ul :style="{width: `${animals.length * 65}%`}">
-      <li v-for="animal in animals"
+  <div class="animal-list">
+    <ul :style="{width: `${animalFilter.length * 65}%`}">
+      <li v-for="animal in animalFilter"
           :key="animal.id"
           :style="{transform: `translate3d(-${currentIndex * 100}%, 0, 0)`}">
         <animal :animal="animal"
@@ -21,7 +20,10 @@ export default {
     Animal
   },
   computed: {
-    ...mapState(['animals', 'currentIndex', 'selected'])
+    ...mapState(['animals', 'currentIndex', 'currentAnimalIndex', 'selected']),
+    animalFilter () {
+      return this.animals.filter(animal => animal.type === this.currentAnimalIndex)
+    }
   },
   methods: {
     ...mapMutations(['selectAnimal'])
@@ -48,7 +50,7 @@ export default {
     transition: all 0.6s ease;
   }
 }
-.animal-list__selected {
-  transform: scaleX(1.1);
+.animal-list::-webkit-scrollbar {
+  display: none;
 }
 </style>

@@ -1,5 +1,7 @@
 <template>
-  <div class="animal">
+  <div class="animal"
+       @click="handleClick"
+       :class="{'animal__selected': !!selected}">
     <span class="animal_photo"
           :style="{backgroundImage: `url(${animal.photos[0]})`}"></span>
     <span class="animal_name"> {{ animal.name }}</span>
@@ -15,11 +17,35 @@ export default {
   props: {
     animal: {
       type: Object
+    },
+    selected: {
+      type: Boolean
     }
   },
   data () {
     return {
 
+    }
+  },
+  methods: {
+    handleClick () {
+      if (this.isDetail) {
+        return
+      }
+      const appRect = document.querySelector('#app').getBoundingClientRect()
+      const elRect = this.$el.getBoundingClientRect()
+      const animal = this.animal
+      const rect = {}
+      rect.top = elRect.top - appRect.top
+      rect.left = elRect.left - appRect.left
+      rect.width = elRect.width
+      rect.height = elRect.height
+      rect.appWidth = appRect.width
+      rect.appHeight = appRect.height
+      this.$emit('select', {
+        rect,
+        animal
+      })
     }
   }
 }
@@ -48,7 +74,7 @@ export default {
 }
 .animal_distance {
   display: block;
-  padding-top: 10px;
+  padding-top: 5px;
   font-size: 14px;
   opacity: 0.7;
 
